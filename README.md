@@ -6,26 +6,7 @@ A professional, modern website for a full-service plumbing company based in Aust
 
 ---
 
-## 📸 Screenshots
-
-### Homepage
-![Homepage](screenshots/homepage.png)
-
-### About Us
-![About Us](screenshots/aboutus.png)
-
-### Emergency Plumbing
-![Emergency Plumbing](screenshots/emergencyplumbing.png)
-
-### Service Areas
-![Service Areas](screenshots/servicearea.png)
-
-### Customer Reviews
-![Reviews](screenshots/reviews.png)
-
----
-
-## 🛠️ Services
+## ️ Services
 
 - **Emergency Plumbing** — 24/7 rapid response for urgent plumbing issues
 - **Water Heater Repair** — Installation, repair & maintenance
@@ -104,6 +85,25 @@ No build tools or dependencies required — it's purely HTML, CSS, and JavaScrip
 ## 📄 License
 
 This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+## 📸 Screenshots
+
+### Homepage
+![Homepage](screenshots/homepage.png)
+
+### About Us
+![About Us](screenshots/aboutus.png)
+
+### Emergency Plumbing
+![Emergency Plumbing](screenshots/emergencyplumbing.png)
+
+### Service Areas
+![Service Areas](screenshots/servicearea.png)
+
+### Customer Reviews
+![Reviews](screenshots/reviews.png)
 
 ---
 
