@@ -1,0 +1,2545 @@
+/* ===================================================================
+   TRUSTFLOW PLUMBING — Conversion-Optimized Design System
+   Color Psychology:
+     Navy (#0B1D3A) = Trust, Authority, Professionalism
+     Orange (#FF6B2C) = Urgency, Action, Emergency
+     Blue (#1E88E5) = Dependability, Water, Service
+     Green (#2ECC71) = Safety, Satisfaction, Guarantee
+     White (#FFFFFF) = Cleanliness, Purity
+   =================================================================== */
+
+/* ── Google Fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap');
+
+/* ── CSS Custom Properties ── */
+:root {
+    /* Primary Palette — Trust & Authority */
+    --navy: #0B1D3A;
+    --navy-light: #132D54;
+    --navy-dark: #06111F;
+
+    /* Action & Urgency */
+    --orange: #FF6B2C;
+    --orange-hover: #E85A1E;
+    --orange-glow: rgba(255, 107, 44, 0.3);
+
+    /* Dependability & Water */
+    --blue: #1E88E5;
+    --blue-light: #42A5F5;
+    --blue-dark: #1565C0;
+    --blue-subtle: #E3F2FD;
+
+    /* Trust Signals */
+    --green: #2ECC71;
+    --green-dark: #27AE60;
+
+    /* Neutrals */
+    --white: #FFFFFF;
+    --off-white: #F8FAFC;
+    --gray-50: #F1F5F9;
+    --gray-100: #E2E8F0;
+    --gray-200: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1E293B;
+    --gray-900: #0F172A;
+
+    /* Semantic */
+    --danger: #EF4444;
+    --warning: #F59E0B;
+    --star-gold: #FBBF24;
+
+    /* Typography */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-display: 'Plus Jakarta Sans', 'Inter', sans-serif;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+
+    /* Borders & Radii */
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+    --radius-full: 50%;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.16);
+    --shadow-orange: 0 8px 32px rgba(255, 107, 44, 0.35);
+    --shadow-blue: 0 8px 32px rgba(30, 136, 229, 0.25);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-base: 0.3s ease;
+    --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+    /* Layout */
+    --max-width: 1200px;
+    --header-height: 70px;
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--gray-800);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-family: inherit;
+}
+
+/* ── Utility Classes ── */
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.section-padding {
+    padding: var(--space-3xl) 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* ── Section Headers ── */
+.section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--blue);
+    margin-bottom: var(--space-md);
+}
+
+.section-label::before {
+    content: '';
+    width: 32px;
+    height: 3px;
+    background: var(--blue);
+    border-radius: 2px;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: var(--space-md);
+}
+
+.section-subtitle {
+    font-size: 1.05rem;
+    color: var(--gray-600);
+    max-width: 600px;
+    line-height: 1.7;
+}
+
+.section-subtitle.centered {
+    margin: 0 auto;
+}
+
+/* ── Buttons ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+    white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    box-shadow: var(--shadow-orange);
+}
+
+.btn-primary:hover {
+    background: var(--orange-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255, 107, 44, 0.45);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--navy);
+    border: 2px solid var(--gray-200);
+}
+
+.btn-secondary:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--navy);
+    border-color: var(--white);
+}
+
+.btn-phone {
+    background: var(--green);
+    color: var(--white);
+    font-size: 1.1rem;
+    padding: 16px 32px;
+    box-shadow: 0 8px 32px rgba(46, 204, 113, 0.35);
+}
+
+.btn-phone:hover {
+    background: var(--green-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(46, 204, 113, 0.45);
+}
+
+.btn-icon {
+    font-size: 1.2em;
+}
+
+/* Pulse animation for phone CTA */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity: 0;
+    }
+}
+
+.btn-phone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    border: 2px solid var(--green);
+    animation: pulse-ring 2s infinite;
+}
+
+/* ════════════════════════════════════════════════
+   1. EMERGENCY TOP BAR
+   Psychology: Creates immediate urgency. Shows 24/7
+   availability to capture emergency leads instantly.
+   ════════════════════════════════════════════════ */
+.emergency-bar {
+    background: linear-gradient(90deg, var(--danger) 0%, #DC2626 100%);
+    color: var(--white);
+    padding: 8px 0;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1001;
+}
+
+.emergency-bar .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+}
+
+.emergency-bar a {
+    color: var(--white);
+    text-decoration: underline;
+    font-weight: 800;
+}
+
+.emergency-pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--white);
+    animation: emergency-blink 1.5s ease-in-out infinite;
+}
+
+@keyframes emergency-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ════════════════════════════════════════════════
+   2. HEADER / NAVIGATION
+   Psychology: Professional, clean. Logo + phone
+   number visible always. Sticky for persistent CTA.
+   ════════════════════════════════════════════════ */
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gray-100);
+    transition: box-shadow var(--transition-base);
+}
+
+.header.scrolled {
+    box-shadow: var(--shadow-md);
+}
+
+.header .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-height);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 1.3rem;
+}
+
+.logo-text {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: var(--navy);
+    line-height: 1.15;
+}
+
+.logo-text span {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--gray-400);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.nav-desktop {
+    display: none;
+    align-items: center;
+    gap: var(--space-xl);
+}
+
+.nav-desktop a {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    transition: color var(--transition-fast);
+    position: relative;
+}
+
+.nav-desktop a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--blue);
+    transition: width var(--transition-base);
+}
+
+.nav-desktop a:hover {
+    color: var(--blue);
+}
+
+.nav-desktop a:hover::after {
+    width: 100%;
+}
+
+.header-cta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.header-phone {
+    display: none;
+    align-items: center;
+    gap: var(--space-sm);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--navy);
+}
+
+.header-phone-icon {
+    width: 36px;
+    height: 36px;
+    background: var(--green);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 0.9rem;
+}
+
+.mobile-call-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    background: var(--green);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 24px;
+    height: 2.5px;
+    background: var(--navy);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Navigation Drawer */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 360px;
+    height: 100vh;
+    background: var(--white);
+    z-index: 2000;
+    padding: var(--space-3xl) var(--space-xl);
+    transition: right var(--transition-slow);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav.open {
+    right: 0;
+}
+
+.mobile-nav-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-base);
+}
+
+.mobile-nav-overlay.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.mobile-nav-close {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    background: none;
+    font-size: 1.5rem;
+    color: var(--gray-600);
+}
+
+.mobile-nav a {
+    display: block;
+    padding: var(--space-md) 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.mobile-nav .mobile-nav-cta {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+/* ════════════════════════════════════════════════
+   3. HERO SECTION
+   Psychology: Maximum impact in first 3 seconds.
+   Emergency messaging captures panicked users.
+   Trust badges reduce anxiety about calling.
+   ════════════════════════════════════════════════ */
+.hero {
+    position: relative;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1a3a6e 100%);
+    overflow: hidden;
+    padding: var(--space-3xl) 0 var(--space-4xl);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(30, 136, 229, 0.15) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    align-items: center;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: rgba(46, 204, 113, 0.15);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+    color: var(--green);
+    padding: 8px 16px;
+    border-radius: var(--radius-xl);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-lg);
+}
+
+.hero-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--green);
+    border-radius: 50%;
+    animation: emergency-blink 1.2s infinite;
+}
+
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: var(--space-lg);
+}
+
+.hero h1 .highlight {
+    color: var(--orange);
+    position: relative;
+}
+
+.hero-subtext {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: var(--space-xl);
+}
+
+.hero-cta-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-2xl);
+}
+
+.hero-trust-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.trust-item-icon {
+    color: var(--green);
+    font-size: 1.1rem;
+}
+
+.hero-image-wrapper {
+    position: relative;
+    display: none;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 480px;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.hero-floating-card {
+    position: absolute;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md) var(--space-lg);
+    box-shadow: var(--shadow-xl);
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+.hero-card-rating {
+    bottom: 20px;
+    left: -20px;
+}
+
+.hero-card-rating .stars {
+    color: var(--star-gold);
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.hero-card-rating .rating-text {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.hero-card-response {
+    top: 20px;
+    right: -10px;
+    animation-delay: 1s;
+}
+
+.hero-card-response .response-time {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--orange);
+}
+
+.hero-card-response .response-label {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    font-weight: 600;
+}
+
+/* ════════════════════════════════════════════════
+   4. SOCIAL PROOF BAR
+   Psychology: Reduces risk perception immediately
+   after the hero. Numbers build credibility fast.
+   ════════════════════════════════════════════════ */
+.social-proof-bar {
+    background: var(--off-white);
+    border-top: 1px solid var(--gray-100);
+    border-bottom: 1px solid var(--gray-100);
+    padding: var(--space-xl) 0;
+}
+
+.proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    text-align: center;
+}
+
+.proof-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.proof-number {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--navy);
+    line-height: 1;
+}
+
+.proof-number span {
+    color: var(--blue);
+}
+
+.proof-label {
+    font-size: 0.8rem;
+    color: var(--gray-600);
+    font-weight: 500;
+}
+
+/* ════════════════════════════════════════════════
+   5. SERVICES SECTION
+   Psychology: Scannable service cards let users
+   quickly find what they need. Icons speed up
+   comprehension 60,000× faster than text.
+   ════════════════════════════════════════════════ */
+.services {
+    padding: var(--space-4xl) 0;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+}
+
+.service-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--blue);
+    transform: scaleY(0);
+    transition: transform var(--transition-base);
+}
+
+.service-card:hover {
+    border-color: var(--blue-light);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.service-card:hover::before {
+    transform: scaleY(1);
+}
+
+.service-card-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--blue-subtle);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--blue);
+    margin-bottom: var(--space-md);
+}
+
+.service-card.emergency .service-card-icon {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+.service-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+}
+
+.service-card p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.service-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blue);
+    transition: gap var(--transition-base);
+}
+
+.service-card-link:hover {
+    gap: var(--space-sm);
+}
+
+/* ════════════════════════════════════════════════
+   6. WHY CHOOSE US (VALUE PROPOSITION)
+   Psychology: Answers the "Why you?" question.
+   Removes objections with guarantees and proof.
+   ════════════════════════════════════════════════ */
+.why-us {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    padding: var(--space-4xl) 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.why-us::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.why-us .section-label {
+    color: var(--blue-light);
+}
+
+.why-us .section-label::before {
+    background: var(--blue-light);
+}
+
+.why-us .section-title {
+    color: var(--white);
+}
+
+.why-us .section-subtitle {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+    position: relative;
+    z-index: 1;
+}
+
+.why-card {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-base);
+    backdrop-filter: blur(8px);
+}
+
+.why-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.why-card-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-md);
+}
+
+.why-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--space-sm);
+}
+
+.why-card p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+}
+
+/* ════════════════════════════════════════════════
+   7. TESTIMONIALS / REVIEWS
+   Psychology: Social proof is the #1 conversion
+   factor for service businesses. Real reviews from
+   real people overcome trust barriers.
+   ════════════════════════════════════════════════ */
+.testimonials {
+    padding: var(--space-4xl) 0;
+    background: var(--off-white);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+}
+
+.testimonial-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--gray-100);
+    transition: all var(--transition-base);
+    position: relative;
+}
+
+.testimonial-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.testimonial-stars {
+    color: var(--star-gold);
+    font-size: 1rem;
+    margin-bottom: var(--space-md);
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-size: 0.95rem;
+    color: var(--gray-700);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.testimonial-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.testimonial-name {
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.95rem;
+}
+
+.testimonial-location {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+}
+
+.testimonial-badge {
+    position: absolute;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--green);
+    background: rgba(46, 204, 113, 0.1);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+}
+
+/* ════════════════════════════════════════════════
+   8. PROCESS / HOW IT WORKS
+   Psychology: Reduces anxiety by showing simplicity.
+   3 steps max — cognitive load must stay low.
+   ════════════════════════════════════════════════ */
+.process {
+    padding: var(--space-4xl) 0;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+    position: relative;
+}
+
+.process-step {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    position: relative;
+}
+
+.process-number {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+}
+
+.process-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 28px;
+    top: 56px;
+    width: 2px;
+    height: calc(100% + var(--space-xl) - 56px);
+    background: var(--gray-200);
+    z-index: 0;
+}
+
+.process-content h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-xs);
+}
+
+.process-content p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* ════════════════════════════════════════════════
+   9. GALLERY / BEFORE-AFTER
+   Psychology: Visual proof of competence. Shows
+   quality of work better than any testimonial.
+   ════════════════════════════════════════════════ */
+.gallery {
+    padding: var(--space-4xl) 0;
+    background: var(--off-white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+    margin-top: var(--space-2xl);
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-lg);
+    background: linear-gradient(0deg, rgba(11, 29, 58, 0.8) 0%, transparent 100%);
+    color: var(--white);
+    transform: translateY(100%);
+    transition: transform var(--transition-base);
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.gallery-overlay h4 {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.gallery-overlay p {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+/* ════════════════════════════════════════════════
+   10. SERVICE AREAS / LOCAL SEO
+   Psychology: "They service MY area" removes
+   geographic friction. Boosts local search ranking.
+   ════════════════════════════════════════════════ */
+.service-areas {
+    padding: var(--space-4xl) 0;
+}
+
+.areas-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
+    margin-top: var(--space-2xl);
+}
+
+.area-tag {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 12px 16px;
+    background: var(--blue-subtle);
+    border-radius: var(--radius-md);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--navy);
+    transition: all var(--transition-base);
+}
+
+.area-tag:hover {
+    background: var(--blue);
+    color: var(--white);
+    transform: translateX(4px);
+}
+
+.area-tag-icon {
+    color: var(--blue);
+    font-size: 0.9rem;
+}
+
+.area-tag:hover .area-tag-icon {
+    color: var(--white);
+}
+
+/* ════════════════════════════════════════════════
+   11. CTA BANNER (MID-PAGE)
+   Psychology: Recaptures users who scrolled past
+   the hero. Urgent copy re-engages emergency leads.
+   ════════════════════════════════════════════════ */
+.cta-banner {
+    background: linear-gradient(135deg, var(--orange) 0%, #E8500A 100%);
+    padding: var(--space-3xl) 0;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 50%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+}
+
+.cta-banner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: var(--space-md);
+    position: relative;
+    z-index: 1;
+}
+
+.cta-banner p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: var(--space-xl);
+    position: relative;
+    z-index: 1;
+}
+
+.cta-banner-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.cta-banner .btn-phone {
+    background: var(--white);
+    color: var(--orange);
+    box-shadow: var(--shadow-lg);
+}
+
+.cta-banner .btn-phone:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+}
+
+.cta-banner .btn-phone::before {
+    border: 2px solid var(--white);
+}
+
+/* ════════════════════════════════════════════════
+   12. LEAD CAPTURE FORM
+   Psychology: Low-friction form design. Minimal
+   fields reduce abandonment. Progress indicators
+   and microcopy build confidence.
+   ════════════════════════════════════════════════ */
+.lead-form-section {
+    padding: var(--space-4xl) 0;
+    background: var(--off-white);
+}
+
+.lead-form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    margin-top: var(--space-2xl);
+}
+
+.lead-form-info h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: var(--space-md);
+}
+
+.lead-form-info p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+    margin-bottom: var(--space-xl);
+}
+
+.form-benefits {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.form-benefit {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 0.9rem;
+    color: var(--gray-700);
+    font-weight: 500;
+}
+
+.form-benefit-icon {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: rgba(46, 204, 113, 0.1);
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green);
+    font-size: 1.1rem;
+}
+
+.lead-form {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-100);
+}
+
+.lead-form-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+.lead-form-header h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-xs);
+}
+
+.lead-form-header p {
+    font-size: 0.85rem;
+    color: var(--gray-400);
+}
+
+.form-group {
+    margin-bottom: var(--space-md);
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: var(--space-xs);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid var(--gray-200);
+    border-radius: var(--radius-md);
+    font-family: var(--font-primary);
+    font-size: 0.95rem;
+    color: var(--gray-800);
+    transition: border-color var(--transition-fast);
+    background: var(--white);
+    appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+.form-submit {
+    width: 100%;
+    margin-top: var(--space-md);
+}
+
+.form-disclaimer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    margin-top: var(--space-md);
+}
+
+.form-disclaimer a {
+    color: var(--blue);
+    text-decoration: underline;
+}
+
+/* ════════════════════════════════════════════════
+   13. CERTIFICATIONS / TRUST BAR
+   Psychology: Third-party validation logos create
+   instant authority. Licensed + Insured removes
+   the biggest objection for plumbing services.
+   ════════════════════════════════════════════════ */
+.trust-badges {
+    padding: var(--space-3xl) 0;
+    text-align: center;
+}
+
+.badges-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+}
+
+.badge-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+.badge-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.badge-item-icon {
+    font-size: 2rem;
+    color: var(--blue);
+}
+
+.badge-item h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-align: center;
+}
+
+.badge-item p {
+    font-size: 0.75rem;
+    color: var(--gray-400);
+    text-align: center;
+}
+
+/* ════════════════════════════════════════════════
+   14. FAQ SECTION
+   Psychology: Answers objections before the user
+   voices them. Reduces call reluctance. Great
+   for SEO with structured data.
+   ════════════════════════════════════════════════ */
+.faq {
+    padding: var(--space-4xl) 0;
+    background: var(--off-white);
+}
+
+.faq-list {
+    max-width: 720px;
+    margin: var(--space-2xl) auto 0;
+}
+
+.faq-item {
+    background: var(--white);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-sm);
+    border: 1px solid var(--gray-100);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.faq-item.active {
+    border-color: var(--blue);
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-lg) var(--space-xl);
+    background: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy);
+    text-align: left;
+    cursor: pointer;
+    gap: var(--space-md);
+}
+
+.faq-question:hover {
+    color: var(--blue);
+}
+
+.faq-toggle {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: var(--radius-full);
+    background: var(--blue-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue);
+    font-size: 0.9rem;
+    transition: all var(--transition-base);
+}
+
+.faq-item.active .faq-toggle {
+    background: var(--blue);
+    color: var(--white);
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--transition-slow), padding var(--transition-slow);
+}
+
+.faq-answer-inner {
+    padding: 0 var(--space-xl) var(--space-lg);
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+/* ════════════════════════════════════════════════
+   15. FOOTER
+   Psychology: Last chance CTA. Complete contact
+   info for trust. Local SEO keywords. Links for
+   crawlability.
+   ════════════════════════════════════════════════ */
+.footer {
+    background: var(--navy-dark);
+    color: rgba(255, 255, 255, 0.7);
+    padding: var(--space-4xl) 0 var(--space-xl);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+}
+
+.footer-brand .logo-text {
+    color: var(--white);
+    margin-bottom: var(--space-md);
+}
+
+.footer-brand p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.footer-social {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.footer-social a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 1rem;
+    transition: all var(--transition-base);
+}
+
+.footer-social a:hover {
+    background: var(--blue);
+    color: var(--white);
+}
+
+.footer-links h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.footer-links a {
+    display: block;
+    font-size: 0.9rem;
+    padding: var(--space-xs) 0;
+    transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--blue-light);
+}
+
+.footer-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+}
+
+.footer-contact-icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--blue-light);
+    font-size: 0.9rem;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.footer-bottom a {
+    color: rgba(255, 255, 255, 0.4);
+    transition: color var(--transition-fast);
+}
+
+.footer-bottom a:hover {
+    color: var(--white);
+}
+
+/* ════════════════════════════════════════════════
+   16. STICKY MOBILE CTA
+   Psychology: Always-visible CTA on mobile ensures
+   users can convert at any scroll position. #1 lead
+   gen tactic for mobile service businesses.
+   ════════════════════════════════════════════════ */
+.mobile-sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 12px var(--space-lg);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.1);
+    z-index: 900;
+    display: flex;
+    gap: var(--space-sm);
+    border-top: 1px solid var(--gray-100);
+}
+
+.mobile-sticky-cta .btn {
+    flex: 1;
+    padding: 14px 12px;
+    font-size: 0.85rem;
+}
+
+.mobile-sticky-cta .btn-phone::before {
+    display: none;
+}
+
+/* ════════════════════════════════════════════════
+   ANIMATIONS — Scroll Reveal
+   ════════════════════════════════════════════════ */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-delay-1 {
+    transition-delay: 0.1s;
+}
+
+.reveal-delay-2 {
+    transition-delay: 0.2s;
+}
+
+.reveal-delay-3 {
+    transition-delay: 0.3s;
+}
+
+.reveal-delay-4 {
+    transition-delay: 0.4s;
+}
+
+/* Counter animation */
+@keyframes count-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE — Tablet (768px+)
+   ════════════════════════════════════════════════ */
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-us-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .proof-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .hero-cta-group {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .areas-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .badges-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .lead-form-grid {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    }
+
+    .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .cta-banner-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .process-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-2xl);
+    }
+
+    .process-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .process-step:not(:last-child)::after {
+        display: none;
+    }
+}
+
+/* ════════════════════════════════════════════════
+   RESPONSIVE — Desktop (1024px+)
+   ════════════════════════════════════════════════ */
+@media (min-width: 1024px) {
+    .nav-desktop {
+        display: flex;
+    }
+
+    .header-phone {
+        display: flex;
+    }
+
+    .hamburger {
+        display: none;
+    }
+
+    .mobile-call-btn {
+        display: none;
+    }
+
+    .mobile-sticky-cta {
+        display: none;
+    }
+
+    .hero {
+        padding: var(--space-4xl) 0;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-image-wrapper {
+        display: block;
+    }
+
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .why-us-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .areas-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+}
+
+/* Add bottom padding for mobile sticky CTA */
+@media (max-width: 1023px) {
+    body {
+        padding-bottom: 72px;
+    }
+}
+
+/* ════════════════════════════════════════════════
+   SPECIAL — Guarantee Badge
+   ════════════════════════════════════════════════ */
+.guarantee-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-md);
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.08) 0%, rgba(46, 204, 113, 0.02) 100%);
+    border: 2px solid rgba(46, 204, 113, 0.2);
+    border-radius: var(--radius-xl);
+    padding: var(--space-md) var(--space-xl);
+    margin-top: var(--space-lg);
+}
+
+.guarantee-icon {
+    font-size: 2rem;
+    color: var(--green);
+}
+
+.guarantee-text {
+    font-size: 0.85rem;
+    color: var(--gray-700);
+}
+
+.guarantee-text strong {
+    display: block;
+    font-size: 0.95rem;
+    color: var(--navy);
+}
+
+/* Loading state for form */
+.lead-form.loading {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.lead-form .success-message {
+    display: none;
+    text-align: center;
+    padding: var(--space-2xl);
+}
+
+.lead-form .success-message.show {
+    display: block;
+}
+
+.lead-form .success-message .success-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+}
+
+.lead-form .success-message h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+}
+
+.lead-form .success-message p {
+    color: var(--gray-600);
+}
+
+/* ════════════════════════════════════════════════
+   INTERIOR PAGES — Shared Styles
+   ════════════════════════════════════════════════ */
+
+/* Page Hero Banner */
+.page-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, #1a3a6e 100%);
+    padding: var(--space-3xl) 0 var(--space-2xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 80%;
+    height: 200%;
+    background: radial-gradient(ellipse, rgba(30, 136, 229, 0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.page-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: var(--space-lg);
+    flex-wrap: wrap;
+}
+
+.breadcrumb a {
+    color: rgba(255, 255, 255, 0.6);
+    transition: color var(--transition-fast);
+}
+
+.breadcrumb a:hover {
+    color: var(--white);
+}
+
+.breadcrumb .separator {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.breadcrumb .current {
+    color: var(--white);
+    font-weight: 600;
+}
+
+.page-hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+}
+
+.page-hero h1 .highlight {
+    color: var(--orange);
+}
+
+.page-hero-subtitle {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 640px;
+    line-height: 1.7;
+}
+
+.page-hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
+}
+
+/* Page Content Section */
+.page-content {
+    padding: var(--space-4xl) 0;
+}
+
+.page-content.alt-bg {
+    background: var(--off-white);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+}
+
+.content-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 800;
+    color: var(--navy);
+    margin-bottom: var(--space-md);
+    line-height: 1.2;
+}
+
+.content-text h3 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+    margin-top: var(--space-xl);
+}
+
+.content-text p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+}
+
+.content-text ul {
+    margin-bottom: var(--space-lg);
+}
+
+.content-text ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.95rem;
+    color: var(--gray-700);
+    padding: var(--space-sm) 0;
+    line-height: 1.6;
+}
+
+.content-text ul li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 700;
+    min-width: 20px;
+    margin-top: 2px;
+}
+
+.content-image {
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.content-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Feature Cards for Service Pages */
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.feature-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-base);
+}
+
+.feature-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.feature-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: var(--space-md);
+}
+
+.feature-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+}
+
+.feature-card p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* Pricing/Info Box */
+.info-box {
+    background: linear-gradient(135deg, var(--blue-subtle) 0%, rgba(227, 242, 253, 0.5) 100%);
+    border: 1px solid rgba(30, 136, 229, 0.15);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    margin-top: var(--space-xl);
+}
+
+.info-box h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+}
+
+.info-box p {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+    line-height: 1.7;
+}
+
+/* Team Grid */
+.team-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.team-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.team-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.team-card-avatar {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(135deg, var(--blue) 0%, var(--navy) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: var(--white);
+    overflow: hidden;
+}
+
+.team-card-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform var(--transition-base);
+}
+
+.team-card:hover .team-card-avatar img {
+    transform: scale(1.05);
+}
+
+.team-card-info {
+    padding: var(--space-xl);
+}
+
+.team-card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-xs);
+}
+
+.team-card-role {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--blue);
+    margin-bottom: var(--space-sm);
+}
+
+.team-card-info p {
+    font-size: 0.85rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* Blog Grid */
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-top: var(--space-xl);
+}
+
+.blog-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.blog-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.blog-card-image {
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(135deg, var(--blue-subtle) 0%, var(--gray-50) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+.blog-card-content {
+    padding: var(--space-xl);
+}
+
+.blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    margin-bottom: var(--space-md);
+}
+
+.blog-card-tag {
+    background: var(--blue-subtle);
+    color: var(--blue);
+    padding: 3px 10px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.blog-card-content h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-sm);
+    line-height: 1.4;
+}
+
+.blog-card-content h3 a {
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+.blog-card-content h3 a:hover {
+    color: var(--blue);
+}
+
+.blog-card-content p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+.blog-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--blue);
+}
+
+/* Career Cards */
+.career-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.career-card {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    transition: all var(--transition-base);
+}
+
+.career-card:hover {
+    border-color: var(--blue-light);
+    box-shadow: var(--shadow-md);
+}
+
+.career-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-md);
+    margin-bottom: var(--space-md);
+    flex-wrap: wrap;
+}
+
+.career-card h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--navy);
+}
+
+.career-card-type {
+    background: rgba(46, 204, 113, 0.1);
+    color: var(--green);
+    padding: 4px 12px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.career-card p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    margin-bottom: var(--space-md);
+}
+
+.career-card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    font-size: 0.85rem;
+    color: var(--gray-400);
+    margin-bottom: var(--space-lg);
+}
+
+.career-card-details span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+/* Values Grid */
+.values-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    margin-top: var(--space-xl);
+}
+
+.value-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--gray-100);
+}
+
+.value-card-icon {
+    font-size: 2rem;
+    min-width: 48px;
+}
+
+.value-card h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--space-xs);
+}
+
+.value-card p {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+}
+
+/* Review Summary */
+.review-summary {
+    background: var(--white);
+    border: 1px solid var(--gray-100);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.review-summary-score {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+}
+
+.review-summary-stars {
+    color: var(--star-gold);
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    margin: var(--space-sm) 0;
+}
+
+.review-summary-count {
+    font-size: 0.95rem;
+    color: var(--gray-600);
+}
+
+/* Map placeholder */
+.map-placeholder {
+    width: 100%;
+    height: 300px;
+    background: linear-gradient(135deg, var(--blue-subtle) 0%, var(--gray-50) 100%);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--gray-400);
+    border: 1px solid var(--gray-100);
+    margin-top: var(--space-xl);
+}
+
+/* Active nav link */
+.nav-desktop a.active {
+    color: var(--blue);
+}
+
+.nav-desktop a.active::after {
+    width: 100%;
+}
+
+/* Interior responsive */
+@media (min-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .career-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .team-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
